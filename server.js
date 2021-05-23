@@ -16,19 +16,19 @@ app.use(cors());
 
 
 //API routes
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGODB_URI)
         .then(()=>{console.log("server connected")})
         .catch((err)=>{console.log("an error happened")});
 
 app.use('/',movie);
 
 
-app.use(express.static(path.join(__dirname, "client", "build")))
+app.use(express.static(path.resolve(__dirname, "./client/build")))
 
 // ...
 // Right before your app.listen(), add this:
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client/build/index.html"));
 });
 
 
